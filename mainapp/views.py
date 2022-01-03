@@ -28,6 +28,7 @@ def products(request, pk=None):
         print(f"User select category: {pk}")
     return render(request, "mainapp/products.html", content)
 
+
 def contact(request):
     title = "о нас"
     visit_date = timezone.now()
