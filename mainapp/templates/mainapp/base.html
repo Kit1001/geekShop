@@ -7,13 +7,13 @@
     <meta charset="utf-8">
     <title>
         {% block title %}
-            {{ title|capfirst }}
+        {{ title|capfirst }}
         {% endblock title %}
     </title>
 
     {% block css %}
-        <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
-        <link rel="stylesheet" href="{% static 'fonts/font-awesome/css/font-awesome.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/all.min.css' %}">
     {% endblock css %}
 
     {% block js %}
@@ -22,19 +22,19 @@
 </head>
 
 <body>
-<div class="container">
+    <div class="container">
 
-    {% block menu %}
-    {% endblock menu %}
+        {% block menu %}
+        {% endblock menu %}
 
-    <div class="content">
-        {% block content %}
-        {% endblock content %}
+        <div class="content">
+            {% block content %}
+            {% endblock content %}
+        </div>
+
     </div>
 
-</div>
-
-{% block footer %}
+    {% block footer %}
     <div class="footer">
         <div class="clearfix">
             <div class="text-footer">
@@ -52,7 +52,7 @@
                 </form>
             </div>
         </div>
-        <p class="small">&copy; GB 2021</p>
+        <p class="small">&copy; GB {% now "Y" %}</p>
         <div class="social">
             <a href="#" class="social1"></a>
             <a href="#" class="social2"></a>
@@ -61,7 +61,7 @@
         </div>
         <p class="small">Положения &amp; Условия / Конфиденциальность &amp; Cookies</p>
     </div>
-{% endblock %}
+    {% endblock %}
 
 </body>
 
