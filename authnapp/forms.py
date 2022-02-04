@@ -1,3 +1,6 @@
+import hashlib
+import random
+
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm, UserChangeForm, UserCreationForm
 
@@ -28,12 +31,15 @@ class ShopUserRegisterForm(UserCreationForm):
             raise forms.ValidationError("Вы слишком молоды!")
         return data
 
-    def clean_first_name(self):
-        data = self.cleaned_data["first_name"]
-        if data == "Олег":
-            raise forms.ValidationError("Олегу нельзя!")
+    def save(self):
+        user = super(ShopUserRegisterForm, self).save()
 
-        return data
+        user.is_active = False
+        salt = hashlib.sha1(str(random.random()).encode("utf8")).hexdigest()[:6]
+        user.activation_key = hashlib.sha1((user.email + salt).encode("utf8")).hexdigest()
+        user.save()
+
+        return user
 
     class Meta:
         model = ShopUser
