@@ -200,7 +200,7 @@ AUTHENTICATION_BACKENDS = (
 import json
 
 with open(
-        os.path.join(BASE_DIR, "tmp", "secrets", "github.json"), "r"
+    os.path.join(BASE_DIR, "tmp", "secrets", "github.json"), "r"
 ) as secrets:
     github_auth = json.load(secrets)
 
